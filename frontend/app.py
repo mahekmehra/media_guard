@@ -81,5 +81,9 @@ if st.button("Analyze Emotion"):
                 else:
                     st.success("✅ This content appears emotionally neutral or safe.")
 
+                st.subheader("AI Explanation")
+
+                st.write(data["explanation"])
+
         except Exception as e:
             st.error(f"Connection Error: {str(e)}")

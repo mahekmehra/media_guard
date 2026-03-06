@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from transformers import pipeline
-from app.gemini_service import generate_explanation
+from .gemini_service import generate_explanation
 
 app = FastAPI(title="Media Guard API")
 

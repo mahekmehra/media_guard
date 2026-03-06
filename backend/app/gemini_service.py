@@ -6,27 +6,55 @@ load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 
 def generate_explanation(text, emotions, risk_level):
 
     prompt = f"""
-            You are an AI system that analyzes emotional manipulation in media.
+            ROLE
+            You are a media literacy AI assistant trained to analyze emotional manipulation in news, social media, and online content. 
+            Your explanations should be calm, neutral, and educational so that readers can understand the manipulation without feeling judged.
 
-            Text:
+            CONTEXT
+            The system has analyzed a piece of text and detected emotional signals that may indicate manipulation.
+            These signals include detected emotions and a calculated manipulation risk level.
+
+            INPUT DATA
+            Text Content:
             {text}
 
-            Detected emotions:
+            Detected Emotions:
             {emotions}
 
-            Risk level:
+            Risk Level:
             {risk_level}
 
-            Explain in 3-4 sentences why this text may emotionally manipulate readers.
-            Focus on emotional language, fear triggers, outrage framing, or urgency tactics.
-            Be objective and analytical.
+            TASK
+            Analyze the text and explain why it may emotionally manipulate readers.
+
+            Focus on identifying:
+            - Emotionally charged language
+            - Fear-based or outrage-driven framing
+            - Urgency or panic triggers
+            - Exaggeration or sensational tone
+            - Language designed to provoke strong reactions rather than inform
+
+            EXPLANATION GUIDELINES
+            - Write in a calm, patient, and objective tone.
+            - Avoid accusing the author directly.
+            - Frame the explanation as an analysis of communication style.
+            - Help the reader understand *how* emotional influence may occur.
+
+            OUTPUT FORMAT
+            Provide a short human-readable explanation in **3–4 sentences** that clearly explains:
+            1. The emotional signals present in the text
+            2. How these signals could influence readers
+            3. Why the content may be considered emotionally manipulative
+
+            EXPLANATION:
             """
+
 
     response = model.generate_content(prompt)
 
