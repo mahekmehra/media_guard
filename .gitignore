@@ -1,0 +1,69 @@
+# ------------------------
+# Python
+# ------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ------------------------
+# Virtual Environments
+# ------------------------
+venv/
+.env/
+.env.*
+
+# ------------------------
+# Jupyter / Notebooks
+# ------------------------
+.ipynb_checkpoints/
+
+# ------------------------
+# OS / Editor Files
+# ------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ------------------------
+# Logs
+# ------------------------
+*.log
+
+# ------------------------
+# Model / Cache Files
+# ------------------------
+*.pt
+*.pth
+*.ckpt
+*.onnx
+.cache/
+huggingface/
+
+# ------------------------
+# Build / Temp
+# ------------------------
+build/
+dist/
+*.egg-info/
+
+# ------------------------
+# Streamlit
+# ------------------------
+.streamlit/
+
+# ------------------------
+# API Keys / Secrets
+# ------------------------
+secrets.yaml
+*.env
+
+
+experiments/__pycache__
+
+backend/models/
+*.bin
+*.safetensors
+*.pt
+*.ckpt
