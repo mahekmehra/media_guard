@@ -59,3 +59,52 @@ def generate_explanation(text, emotions, risk_level):
     response = model.generate_content(prompt)
 
     return response.text
+
+def rewrite_neutral(text):
+    
+
+    prompt = f"""
+                PERSONA
+                You are a media literacy AI assistant that specializes in rewriting emotionally manipulative media content into clear, neutral, and responsible communication.
+
+                Your goal is to help readers understand information without unnecessary emotional pressure or psychological distress.
+
+                CONTEXT
+                Some media content uses emotionally charged language such as fear amplification, outrage framing, sensational wording, or urgency triggers. 
+                These techniques can influence readers emotionally rather than informing them objectively.
+
+                The system needs to transform such content into a neutral and mentally safe version while preserving the original factual meaning.
+
+                INPUT TEXT
+                {text}
+
+                TASK
+                Rewrite the text so that it becomes neutral, balanced, and informative.
+
+                The rewritten version should:
+                • Remove emotionally manipulative language
+                • Eliminate sensational or alarmist phrasing
+                • Avoid fear-inducing or panic-driven wording
+                • Reduce exaggerated claims or dramatic framing
+                • Preserve the factual information and core message
+
+                REWRITING GUIDELINES
+                • Use calm, objective, and informative language
+                • Replace emotionally charged words with neutral alternatives
+                • Maintain clarity and readability
+                • Avoid adding new opinions or interpretations
+                • Keep the meaning of the original information intact
+
+                MENTAL WELL-BEING GOAL
+                The rewritten text should support healthy information consumption by:
+                • Reducing panic or emotional escalation
+                • Preventing unnecessary anxiety
+                • Encouraging calm and rational understanding
+
+                OUTPUT FORMAT
+                Provide only the rewritten text in a clear and neutral tone.
+
+                NEUTRAL REWRITTEN VERSION:
+                """
+    response = model.generate_content(prompt)
+    return response.text

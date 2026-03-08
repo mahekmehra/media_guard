@@ -85,5 +85,11 @@ if st.button("Analyze Emotion"):
 
                 st.write(data["explanation"])
 
+                if data["neutral_rewrite"]:
+
+                    st.subheader("Neutral Rewrite")
+
+                    st.success(data["neutral_rewrite"])
+
         except Exception as e:
             st.error(f"Connection Error: {str(e)}")

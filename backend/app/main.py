@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from transformers import pipeline
-from .gemini_service import generate_explanation
+from .gemini_service import generate_explanation, rewrite_neutral
 
 app = FastAPI(title="Media Guard API")
 
@@ -191,6 +191,9 @@ def analyze_text(payload: TextInput):
 
     risk_score, risk_level = compute_risk_score(emotion_scores)
     explanation = generate_explanation(text,emotion_scores,risk_level)
+    rewrite = None
+    if risk_level == "High":
+        rewrite = rewrite_neutral(text)
 
     return {
         "text": text,
@@ -198,5 +201,6 @@ def analyze_text(payload: TextInput):
         "emotions": emotion_scores,
         "risk_score": risk_score,
         "risk_level": risk_level,
-        "explanation": explanation
+        "explanation": explanation,
+        "neutral_rewrite": rewrite
     }
