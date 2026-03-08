@@ -122,6 +122,38 @@ def compute_risk_score(emotions):
 
     return round(risk_score, 2), level
 
+def detect_persuasion_patterns(emotions):
+
+    patterns = []
+
+    fear = emotions.get("fear", 0)
+    anger = emotions.get("anger", 0)
+    sadness = emotions.get("sadness", 0)
+    nervousness = emotions.get("nervousness", 0)
+    surprise = emotions.get("surprise", 0)
+
+    # Fear Bait
+    if fear > 0.5 or nervousness > 0.5:
+        patterns.append("Fear Bait")
+
+    # Outrage Bait
+    if anger > 0.5:
+        patterns.append("Outrage Bait")
+
+    # Sympathy Bait
+    if sadness > 0.5:
+        patterns.append("Sympathy Bait")
+
+    # Urgency Manipulation
+    if fear > 0.4 and surprise > 0.3:
+        patterns.append("Urgency Bait")
+
+    # Sensationalism
+    if surprise > 0.6:
+        patterns.append("Sensationalism")
+
+    return patterns
+
 
 # ---------------------------
 # Routes
@@ -190,6 +222,7 @@ def analyze_text(payload: TextInput):
     # -----------------------
 
     risk_score, risk_level = compute_risk_score(emotion_scores)
+    patterns = detect_persuasion_patterns(emotion_scores)
     explanation = generate_explanation(text,emotion_scores,risk_level)
     rewrite = None
     if risk_level == "High":
@@ -201,6 +234,7 @@ def analyze_text(payload: TextInput):
         "emotions": emotion_scores,
         "risk_score": risk_score,
         "risk_level": risk_level,
+        "persuasion_patterns": patterns,
         "explanation": explanation,
         "neutral_rewrite": rewrite
     }
