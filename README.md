@@ -1,25 +1,22 @@
 # 🛡️ Media Guard – AI System for Emotional Manipulation Detection
 
-Media Guard is an AI-powered system that detects and analyzes emotional manipulation in news and social media content.
+Media Guard is an AI-powered system that detects emotional manipulation in news and social media content using machine learning, natural language processing, and generative AI.
 
-The system combines Machine Learning emotion detection with Generative AI reasoning and rewriting to help users understand and neutralize emotionally manipulative messaging.
+The system analyzes emotional tone, detects persuasion tactics, explains manipulation patterns, and rewrites emotionally manipulative text into neutral language.
 
 ---
 
-# 🚀 Features
+# 🚀 Key Features
 
 ## 🧠 Dual Emotion Detection Models
 
-Users can analyze text using two different emotion models:
+Users can analyze text using two different emotion models.
 
 ### Basic Emotion Model
 
-- Fine-tuned DistilBERT
-- Single-label classification
-- Faster inference
-- 6 emotion categories
+Fine-tuned DistilBERT classifier trained on emotion datasets.
 
-Supported emotions:
+Detects:
 
 - sadness
 - joy
@@ -30,19 +27,18 @@ Supported emotions:
 
 ### Advanced Emotion Model
 
-- Fine-tuned GoEmotions dataset
-- Multi-label emotion detection
-- 28 emotion categories
-- More nuanced emotional analysis
+Fine-tuned GoEmotions dataset supporting multi-label emotion detection with **28 emotion categories**.
+
+Provides deeper emotional context and nuanced analysis.
 
 ---
 
-# ⚠️ Emotional Manipulation Detection
+# ⚠️ Manipulation Risk Detection
 
-The system calculates a **Manipulation Risk Score (0–100)** based on detected emotions.
+The system calculates a **Manipulation Risk Score (0–100)** based on detected emotional signals.
 
-| Risk Score | Level |
-|-----------|-------|
+| Score | Level |
+|------|------|
 | 0–35 | Low |
 | 36–65 | Medium |
 | 66–100 | High |
@@ -67,60 +63,44 @@ The system calculates a **Manipulation Risk Score (0–100)** based on detected 
 
 # 🎯 Persuasion Pattern Detection
 
-Media Guard identifies common emotional persuasion tactics used in media.
-
-### Detected Patterns
+Media Guard detects common emotional persuasion techniques used in media.
 
 | Pattern | Description |
-|--------|-------------|
-| Fear Bait | Uses fear to create panic or urgency |
-| Outrage Bait | Attempts to provoke anger |
-| Sympathy Bait | Exploits sadness or emotional suffering |
-| Urgency Bait | Pushes immediate action through pressure |
+|-------|-------------|
+| Fear Bait | Creates panic or danger perception |
+| Outrage Bait | Provokes anger or moral outrage |
+| Sympathy Bait | Exploits sadness or suffering |
+| Urgency Bait | Pressures immediate action |
 | Sensationalism | Uses exaggerated dramatic language |
 
 ### Example Output
 
 ```
-⚠️ Fear Bait
-⚠️ Urgency Bait
-⚠️ Sensationalism
+⚠ Fear Bait
+⚠ Urgency Bait
+⚠ Sensationalism
 ```
 
 ---
 
 # 🤖 AI Explanation Engine (Gemini)
 
-Using **Google Gemini**, Media Guard explains why a piece of content may be emotionally manipulative.
+The system integrates **Google Gemini** to explain why content may be emotionally manipulative.
 
-### Example
-
-**Detected emotions**
-
-```
-fear (0.92), surprise (0.05)
-```
-
-**Risk Level**
-
-```
-High
-```
-
-**Explanation**
+### Example Explanation
 
 ```
 The text uses catastrophic language such as "destroy everything"
-and "panic is spreading", which amplifies fear and urgency in
-readers. This framing may emotionally manipulate audiences by
-triggering panic rather than presenting balanced information.
+and "panic is spreading", which amplifies fear and urgency.
+Such framing can emotionally manipulate readers by triggering
+panic rather than presenting balanced information.
 ```
 
 ---
 
 # ✏️ Neutral Rewrite Engine
 
-Media Guard can rewrite emotionally manipulative content into **neutral, balanced language**.
+Media Guard can rewrite emotionally manipulative text into **neutral, balanced language**.
 
 ### Original Text
 
@@ -140,13 +120,13 @@ assessing potential impacts while gathering further information.
 
 # 📊 Emotional Intensity Dashboard
 
-The system visualizes how emotional intensity changes after rewriting.
+The system visualizes emotional intensity in the analyzed text.
 
 ### Features
 
 - Top-5 detected emotions
 - Emotion comparison graph
-- Original vs rewritten content
+- Original vs neutral rewrite comparison
 
 Example visualization:
 
@@ -154,7 +134,7 @@ Example visualization:
 Emotion Intensity: Original vs Neutral Rewrite
 ```
 
-The dashboard shows that the neutral rewrite reduces emotional intensity.
+This demonstrates how the neutral rewrite reduces emotional manipulation intensity.
 
 ---
 
@@ -177,7 +157,7 @@ Gemini AI Explanation
    ↓
 Neutral Rewrite Generation
    ↓
-Emotion Intensity Dashboard
+Emotion Visualization Dashboard
 ```
 
 ---
@@ -188,7 +168,6 @@ Emotion Intensity Dashboard
 
 - FastAPI
 - Python
-- Transformers (HuggingFace)
 
 ## Frontend
 
@@ -196,15 +175,16 @@ Emotion Intensity Dashboard
 
 ## Machine Learning
 
+- HuggingFace Transformers
 - DistilBERT
-- GoEmotions dataset
+- GoEmotions Dataset
 - PyTorch
 
 ## Generative AI
 
 - Google Gemini API
 
-## Visualization
+## Data Visualization
 
 - Matplotlib
 - Pandas
@@ -231,23 +211,21 @@ media_guard
 │   └── (not included in repository)
 │
 ├── .gitignore
-├── requirements.txt
 └── README.md
-
 ```
 
 ---
 
 # ⚙️ Installation
 
-## Clone Repository
+## Clone the repository
 
 ```
 git clone https://github.com/YOUR_USERNAME/media_guard.git
 cd media_guard
 ```
 
-## Install Dependencies
+## Install dependencies
 
 ```
 pip install -r requirements.txt
@@ -257,10 +235,10 @@ pip install -r requirements.txt
 
 # 🔑 Environment Setup
 
-Create `.env` inside the **backend folder**.
+Create `.env` inside **backend directory**:
 
 ```
-GEMINI_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_api_key
 ```
 
 ---
@@ -316,8 +294,8 @@ High
 ### Persuasion Patterns
 
 ```
-⚠️ Fear Bait
-⚠️ Urgency Bait
+⚠ Fear Bait
+⚠ Urgency Bait
 ```
 
 ### AI Explanation
@@ -329,24 +307,49 @@ The text uses catastrophic language that amplifies fear and urgency.
 ### Neutral Rewrite
 
 ```
-Authorities reported a developing situation and are assessing potential impacts.
+Authorities reported a developing situation and are assessing risks.
 ```
 
 ---
 
-# 🚀 Upcoming Features
+# 🗺️ Project Roadmap
 
-### Phase 7
+## Completed Phases
 
-- RAG-based news research assistant
+| Phase | Feature |
+|------|--------|
+| 1 | Emotion Detection Models |
+| 2 | Manipulation Risk Scoring |
+| 3 | Gemini AI Explanation |
+| 4 | Neutral Rewrite Engine |
+| 5 | Persuasion Pattern Detection |
+| 6 | Emotion Visualization Dashboard |
 
-### Phase 8
+---
 
-- Browser extension for real-time analysis
+## Upcoming Phases
 
-### Phase 9
+### Phase 9 — Emotion Timeline Analysis
+Detect emotional escalation across multi-paragraph text.
 
-- Downloadable AI analysis report (PDF)
+### Phase 7 — PDF AI Analysis Report
+Generate downloadable AI reports with charts and analysis.
+
+### Phase 8 — Browser Extension
+Analyze emotional manipulation directly on webpages.
+
+### Phase 10 — Cloud Deployment
+Deploy backend and frontend with live demo access.
+
+---
+
+# 🔮 Future Enhancements
+
+## React Frontend
+Replace Streamlit with a modern **React UI** for improved performance and scalability.
+
+## Docker Deployment
+Containerize backend and frontend using **Docker** and deploy to cloud platforms such as **AWS** or **GCP**.
 
 ---
 
@@ -354,4 +357,4 @@ Authorities reported a developing situation and are assessing potential impacts.
 
 **Mahek Mehra**
 
-AI / Machine Learning Project
+Machine Learning / Generative AI Project
