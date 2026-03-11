@@ -3,6 +3,14 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 
+def split_paragraphs(text):
+
+    paragraphs = text.split("\n")
+
+    paragraphs = [p.strip() for p in paragraphs if p.strip()]
+
+    return paragraphs
+
 def calculate_emotional_intensity(emotions):
 
     risk_emotions = [
@@ -196,6 +204,52 @@ if st.button("Analyze Emotion"):
                     ax.legend()
 
                     st.pyplot(fig)
+
+
+                st.subheader("Emotion Timeline Analysis")
+
+                paragraphs = split_paragraphs(user_text)
+
+                timeline_scores = []
+
+                for p in paragraphs:
+
+                    res = requests.post(
+                        "http://127.0.0.1:8000/analyze",
+                        json={
+                            "text": p,
+                            "model_type": model_type
+                        }
+                    )
+
+                    data_p = res.json()
+
+                    intensity = calculate_emotional_intensity(
+                        data_p["emotions"]
+                    )
+
+                    timeline_scores.append(intensity)
+
+                fig, ax = plt.subplots()
+
+                x = range(len(timeline_scores))
+
+                ax.plot(
+                    x,
+                    timeline_scores,
+                    marker="o"
+                )
+
+                ax.set_xlabel("Paragraph")
+                ax.set_ylabel("Emotional Intensity")
+                ax.set_title("Emotion Timeline Across Text")
+
+                ax.set_xticks(x)
+                ax.set_xticklabels(
+                    [f"P{i+1}" for i in range(len(paragraphs))]
+                )
+
+                st.pyplot(fig)
 
         except Exception as e:
             st.error(f"Connection Error: {str(e)}")
